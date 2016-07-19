@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grunt-inline2 test</title>
+</head>
+<body>
+
+<!-- css inline -->
+<link rel="stylesheet" href="../css/test1.css?__inline">
+<link rel="stylesheet" href="../css/test2.css?__inline">
+
+<p class="p1">test</p>
+<p class="p2">test</p>
+<div class="div1">div1</div>
+<div class="div2">div2</div>
+
+<!-- js inline -->
+<script src="/js/test.js?__inline"></script>
+<script src="../js/test.js?__inline"></script>
+
+
+<!-- inline tag -->
+<inline src="partial1.html?__inline" />
+<inline src="partial2.html?__inline" />
+
+
+<!--img to base64-->
+<img src="../imgs/img1.jpg?__inline" alt="">
+
+</body>
+</html>

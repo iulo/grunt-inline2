@@ -1,0 +1,11 @@
+.div1 {
+    width: 120px;
+    height: 120px;
+    background: url(../imgs/img3.gif?__inline);
+}
+
+.div2 {
+    width: 120px;
+    height: 120px;
+    background: url(/imgs/img3.gif?__inline);
+}
