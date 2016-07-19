@@ -23,6 +23,16 @@ module.exports = function(grunt) {
                 cwd: 'test/static/html/',
                 src: ['*.html'],
                 dest: 'test/output/html/'
+            },
+            css: {
+                options: {
+                    staticPath: path.join(process.cwd(), 'test/static'),
+                    exts: ['html']
+                },
+                expand: true,
+                cwd: 'test/static/css/',
+                src: ['*.css'],
+                dest: 'test/output/css/'
             }
         }
     });
