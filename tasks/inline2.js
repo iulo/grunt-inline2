@@ -24,10 +24,14 @@ module.exports = function(grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
             tag: '__inline',
-            exts: ['html'],
-            staticPath: process.cwd()
+            exts: ['html']
         });
 
+        if (options.staticPath === undefined) {
+            options.staticPath = process.cwd();
+            grunt.log.warn('don\'t get staticPath from options, use default as: process.cwd()');
+        }
+        
         var exts = options.exts;
         // var dest = this.data.dest;
 
