@@ -17,11 +17,23 @@ module.exports = function(grunt) {
             html: {
                 options: {
                     staticPath: path.join(process.cwd(), 'test/static'),
-                    exts: ['html']
+                    exts: ['html'],
+                    uglify: {
+                        fromString: true,
+                        mangle: {
+                            except: ['$', 'jQuery']
+                        },
+                        compress: {
+                            drop_console: false
+                        }
+                    },
+                    cssmin: {
+                        compatibility: 'ie7'
+                    }
                 },
                 expand: true,
                 cwd: 'test/static/html/',
-                src: ['test.html'],
+                src: ['*.html'],
                 dest: 'test/output/html/'
             },
             css: {

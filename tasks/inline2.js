@@ -101,7 +101,7 @@ module.exports = function(grunt) {
 
                     if (grunt.file.exists(inlineFilePath)) {
                         ret = grunt.file.read(inlineFilePath);
-                        // recursive compile
+                        // recursive comrepile
                         ret = htmlHandle(inlineFilePath, ret, null, options);
 
                     } else {
@@ -189,7 +189,7 @@ module.exports = function(grunt) {
                             styleSheetContent = cssHandle(filePath, styleSheetContent, null, options);
 
                             if (options.cssmin) {
-                                styleSheetContent = CleanCSS.process(styleSheetContent);
+                                styleSheetContent = (new CleanCSS(options.cssmin).minify(styleSheetContent)).styles;
                             }
 
                             ret = '<style>\n' + styleSheetContent + '\n</style>';
