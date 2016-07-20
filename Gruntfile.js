@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                             except: ['$', 'jQuery']
                         },
                         compress: {
-                            drop_console: false
+                            drop_console: true
                         }
                     },
                     cssmin: {
