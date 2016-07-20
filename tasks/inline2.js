@@ -96,11 +96,13 @@ module.exports = function(grunt) {
                         inlineFilePath = path.resolve(path.dirname(filePath), src);
                     }
 
+                    // remove query
                     inlineFilePath = inlineFilePath.replace(/\?.*$/, '');
 
                     if (grunt.file.exists(inlineFilePath)) {
                         ret = grunt.file.read(inlineFilePath);
-                        // TODO: 递归编译
+                        // recursive compile
+                        ret = htmlHandle(inlineFilePath, ret, null, options);
 
                     } else {
                         grunt.log.error("Couldn't find " + inlineFilePath + '!');
