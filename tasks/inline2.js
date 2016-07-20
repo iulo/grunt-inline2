@@ -16,6 +16,7 @@ module.exports = function(grunt) {
     var UglifyJS = require('uglify-js');
     var CleanCSS = require('clean-css');
     var util = require('../lib/util')(grunt);
+    var _ = grunt.util._;
 
     // Please see the Grunt documentation for more information regarding task
     // creation: http://gruntjs.com/creating-tasks
@@ -31,7 +32,7 @@ module.exports = function(grunt) {
             options.staticPath = process.cwd();
             grunt.log.warn('don\'t get staticPath from options, use default as: process.cwd()');
         }
-        
+
         var exts = options.exts;
         // var dest = this.data.dest;
 
@@ -145,9 +146,11 @@ module.exports = function(grunt) {
 
                         if (grunt.file.exists(inlineFilePath)) {
                             let code = grunt.file.read(inlineFilePath);
+
                             if (options.uglify) {
-                                code = UglifyJS.minify(code, options.uglify);
+                                code = UglifyJS.minify(code, _.merge({fromString: true}, options.uglify)).code;
                             }
+
                             ret = '<script>\n' + code + '\n</script>';
 
                         } else {
