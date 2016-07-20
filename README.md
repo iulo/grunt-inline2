@@ -1,4 +1,5 @@
-# grunt-inline2
+# grunt-inline2[![NPM version][npm-image]][npm-url]
+
 *Inspired by [`grunt-inline`](https://github.com/chyingp/grunt-inline)*
 > Inlines img, script and link tags into the same file
 
@@ -109,3 +110,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 * 20160720　　v0.0.1　　first release
 
+
+[npm-url]: https://www.npmjs.com/package/grunt-inline2
+[npm-image]: http://img.shields.io/npm/v/grunt-inline2.svg
