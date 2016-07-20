@@ -1,5 +1,5 @@
 # grunt-inline2
-
+*Inspired by [`grunt-inline`](https://github.com/chyingp/grunt-inline)*
 > Inlines img, script and link tags into the same file
 
 ## Getting Started
@@ -24,66 +24,88 @@ In your project's Gruntfile, add a section named `inline2` to the data object pa
 
 ```js
 grunt.initConfig({
-  inline2: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+    inline2: {
+        html: {
+            options: {
+                staticPath: path.join(process.cwd(), 'test/static'),
+                exts: ['html'],
+                uglify: {
+                    fromString: true,
+                    mangle: {
+                        except: ['$', 'jQuery']
+                    },
+                    compress: {
+                        drop_console: false
+                    }
+                },
+                cssmin: {
+                    compatibility: 'ie7'
+                }
+            },
+            expand: true,
+            cwd: 'test/static/html/',
+            src: ['*.html'],
+            dest: 'test/output/html/'
+        },
+        css: {
+            options: {
+                staticPath: path.join(process.cwd(), 'test/static'),
+                exts: ['html']
+            },
+            expand: true,
+            cwd: 'test/static/css/',
+            src: ['*.css'],
+            dest: 'test/output/css/'
+        }
+    }
 });
 ```
 
 ### Options
 
-#### options.separator
+#### staticPath
 Type: `String`
-Default value: `',  '`
+Default value: `process.cwd()`
 
-A string value that is used to do something with whatever.
+A string value that is used as root path.
+For example staticPath was set `/home/xxx/test`, src in files like `/imgs/firefox.png?__inline` will be considered as `/home/xxx/test/imgs/firefox.png?__inline`
 
-#### options.punctuation
+#### tag
 Type: `String`
-Default value: `'.'`
+Default value: `__inline`
 
-A string value that is used to do something else with whatever else.
+Only URLs that contain the value for tag will be inlined
+
+#### exts
+Type: `Array`
+Default value: `['html']`
+
+Setting an exts array allows multiple file extensions to be processed as html.
+
+#### dest
+
+If dest is assigned, the the source file  will be processed and then copied to the destination path.
+
+#### uglify
+Type: `Object`
+Default value: `undefined`
+
+If uglify is assigned, it will be pass to `uglify-js` as options, and .js file will be minified before inlined.
+
+#### cssmin
+Type: `Object`
+Default value: `undefined`
+
+If cssmin is assigned, it will be pass to `clean-css` as options, and .css file will be minified before inlined.
+
 
 ### Usage Examples
+try test
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  inline2: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  inline2: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+- 20160720      v0.0.1      first release
+
