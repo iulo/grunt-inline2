@@ -67,7 +67,11 @@ module.exports = function(grunt) {
                     destfilePath = isExpandedPair ? filePair.dest : util.unixifyPath(path.join(filePair.dest, filePath));
 
                 } else {
-                    destfilePath = filePair.dest || filePath;
+                    if (filePair.dest) {
+                        destfilePath = isExpandedPair ?  path.join(filePair.orig.cwd, filePair.dest) : filePair.dest;
+                    } else {
+                        destfilePath = filePath;
+                    }
                 }
 
                 grunt.file.write(destfilePath, fileContent);
@@ -290,13 +294,15 @@ module.exports = function(grunt) {
 
                     if (grunt.file.exists(inlineFilePath) ) {
                         newUrl = new Datauri(inlineFilePath).content;
-                        return matchedWord.replace(imgUrl, newUrl);
 
                     } else {
                         grunt.log.error(filePath + " Couldn't find " + inlineFilePath + '!');
                     }
                 }
+
+                return matchedWord.replace(imgUrl, newUrl);
             });
+
 
             return fileContent;
         }
