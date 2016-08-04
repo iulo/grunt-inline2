@@ -15,11 +15,6 @@ module.exports = function(grunt) {
     var Datauri = require('datauri');
     var UglifyJS = require('uglify-js');
     var CleanCSS = require('clean-css');
-    var imagemin = require('imagemin');
-    var imageminGifsicle = require('imagemin-gifsicle');
-    var imageminJpegtran = require('imagemin-jpegtran');
-    var imageminOptipng = require('imagemin-optipng');
-    var imageminSvgo = require('imagemin-svgo');
     var util = require('../lib/util')(grunt);
     var _ = grunt.util._;
 
@@ -73,8 +68,8 @@ module.exports = function(grunt) {
                     destfilePath = isExpandedPair ? filePair.dest : util.unixifyPath(path.join(filePair.dest, filePath));
 
                 } else {
-                    if (filePair.dest) {
-                        destfilePath = util.unixifyPath(filePair.dest);
+                    if (filePair.orig.dest) {
+                        destfilePath = isExpandedPair ? path.join(filePair.orig.cwd, filePair.dest) : util.unixifyPath(filePair.dest);
                     } else {
                         destfilePath = filePath;
                     }
