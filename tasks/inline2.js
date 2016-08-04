@@ -15,8 +15,14 @@ module.exports = function(grunt) {
     var Datauri = require('datauri');
     var UglifyJS = require('uglify-js');
     var CleanCSS = require('clean-css');
+    var imagemin = require('imagemin');
+    var imageminGifsicle = require('imagemin-gifsicle');
+    var imageminJpegtran = require('imagemin-jpegtran');
+    var imageminOptipng = require('imagemin-optipng');
+    var imageminSvgo = require('imagemin-svgo');
     var util = require('../lib/util')(grunt);
     var _ = grunt.util._;
+
 
     // Please see the Grunt documentation for more information regarding task
     // creation: http://gruntjs.com/creating-tasks
@@ -68,7 +74,7 @@ module.exports = function(grunt) {
 
                 } else {
                     if (filePair.dest) {
-                        destfilePath = isExpandedPair ?  path.join(filePair.orig.cwd, filePair.dest) : filePair.dest;
+                        destfilePath = util.unixifyPath(filePair.dest);
                     } else {
                         destfilePath = filePath;
                     }
@@ -293,7 +299,7 @@ module.exports = function(grunt) {
                     inlineFilePath = inlineFilePath.replace(/\?.*$/, '');
 
                     if (grunt.file.exists(inlineFilePath) ) {
-                        newUrl = new Datauri(inlineFilePath).content;
+                        newUrl = (new Datauri(inlineFilePath)).content;
 
                     } else {
                         grunt.log.error(filePath + " Couldn't find " + inlineFilePath + '!');
