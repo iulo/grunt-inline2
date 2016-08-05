@@ -1,7 +1,7 @@
 {
   "name": "grunt-inline2",
   "description": "Inlines img, script and link tags into the same file",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/iulo/grunt-inline2",
   "author": {
     "name": "iulo",
