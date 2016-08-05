@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 
                 } else {
                     if (filePair.orig.dest) {
-                        destfilePath = isExpandedPair ? path.join(filePair.orig.cwd, filePair.dest) : util.unixifyPath(filePair.dest);
+                        destfilePath = util.unixifyPath(filePair.dest);
                     } else {
                         destfilePath = filePath;
                     }
@@ -277,7 +277,7 @@ module.exports = function(grunt) {
                 var inlineFilePath;
 
                 if (util.isBase64Path(newUrl) || util.isRemotePath(newUrl)) {
-                    return newUrl;
+                    return matchedWord;
 
                 } else if (util.isAbsPath(newUrl)) {
                     inlineFilePath = path.join(util.unixifyPath(options.staticPath), newUrl);

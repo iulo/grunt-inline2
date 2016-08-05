@@ -45,6 +45,15 @@ module.exports = function(grunt) {
                 cwd: 'test/static/css/',
                 src: ['*.css'],
                 dest: 'test/output/css/'
+            },
+            css2: {
+                options: {
+                    staticPath: path.join(process.cwd(), 'test/static'),
+                    exts: ['html']
+                },
+                expand: true,
+                cwd: 'test/static/css2/',
+                src: ['*.css']
             }
         }
     });

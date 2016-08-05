@@ -108,6 +108,7 @@ try test
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 20160805　　v0.0.5　　fix remote path img in css replace bug
 * 20160805　　v0.0.4　　fix files dest
 * 20160726　　v0.0.2　　fix files dest, css's img inline replace
 * 20160720　　v0.0.1　　first release

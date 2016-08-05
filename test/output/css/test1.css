@@ -1,0 +1,10 @@
+.p1 {
+    font-size: 12px;
+    *color: green;
+    color: blue;
+}
+
+.p2 {
+    font-size: 18px;
+    color: red;
+}

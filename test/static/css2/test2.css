@@ -1,13 +1,13 @@
 .div1 {
     width: 64px;
     height: 64px;
-    background: url(../imgs/github.png?__inline);
+    background: url(../imgs/github.png);
 }
 
 .div2 {
     width: 120px;
     height: 120px;
-    background: url(/imgs/img3.gif?__inline);
+    background: url(/imgs/img3.gif);
 }
 
 .div3 {
